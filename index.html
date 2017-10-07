@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+        outline:none;
+        box-sizing:border-box;
+    }
+    .clearfix:before, .clearfix:after {
+        content:"";
+        display:table;
+    }
+    .clearfix:after{
+        clear:both;
+        overflow:hidden;
+    }
+    .clearfix{
+        zoom:1;
+    }
+    html,body{
+        width:100%;
+        height:100%;
+    }
+    .editor{
+       width:80%;
+       min-height: 100%;
+       margin:0 auto;
+    }
+    .editor .title{
+        border-bottom: 1px solid green;
+        padding:0 5%;
+    }
+    .editor .content{
+        padding:0 5%;
+    }
+    .editor .title input[type="text"]{
+        height:50px;
+        width:80%;
+        border:none;
+        font-size:20px;
+    }
+    .h2_area{
+        display: flex;
+    }
+    .h2_area .icon_h1{
+        width:5%;
+    }
+    .h2_area .h2{
+        width:95%;
+    }
+    .h2_area .h2 input{
+        border:none;
+        width:100%;
+    }
+    </style>
+</head>
+<body>
+    <div class="editor">
+        <div class="title">
+            <input type="text" placeholder="无标题">
+        </div>
+        <div class="content">
+            <div class="h2_area" v-for="(item,index) in arr">
+                <div class="icon_h1">+</div>
+                <div class="h2">
+                    <input type="text" v-model="item.h2" @keyup.13='add' v-focus @keyup.9='myTab' >
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+      Vue.directive('focus', {
+        inserted: function (el) {
+            el.focus()
+        }
+      });
+      let vm = new Vue({
+          el:'.editor',
+          data:{
+            arr:[
+                {name:'开始写吧',category:'h2',}
+            ]
+          },
+          methods:{
+            add:function(e){
+                // console.log(e)
+                console.log(e.srcElement.value)
+                this.arr.push({
+                })
+
+            },
+            myTab:function(){
+
+            }
+          }
+      })
+    </script>
+</body>
+</html>
